@@ -1,0 +1,84 @@
+{
+  "title": "User",
+  "bsonType": "object",
+  "required": [
+    "_id",
+    "_partition",
+    "email",
+    "displayName"
+  ],
+  "properties": {
+    "_id": {
+      "bsonType": "objectId"
+    },
+    "_partition": {
+      "bsonType": "string"
+    },
+    "email": {
+      "bsonType": "string"
+    },
+    "displayName": {
+      "bsonType": "string"
+    },
+    "deviceIds": {
+      "bsonType": "array",
+      "items": {
+        "bsonType": "objectId"
+      }
+    },
+    "groups": {
+      "bsonType": "array",
+      "items": {
+        "title": "GroupMembership",
+        "bsonType": "object",
+        "required": [
+          "groupId",
+          "groupName",
+          "deviceId",
+          "isOwner",
+          "shareLocation"
+        ],
+        "properties": {
+          "groupId": {
+            "bsonType": "objectId"
+          },
+          "groupName": {
+            "bsonType": "string"
+          },
+          "deviceId": {
+            "bsonType": "objectId"
+          },
+          "isOwner": {
+            "bsonType": "bool"
+          },
+          "shareLocation": {
+            "bsonType": "bool"
+          }
+        }
+      }
+    },
+    "invitations": {
+      "bsonType": "array",
+      "items": {
+        "title": "GroupInvitation",
+        "bsonType": "object",
+        "required": [
+          "groupId",
+          "groupName",
+          "senderEmail"
+        ],
+        "properties": {
+          "groupId": {
+            "bsonType": "objectId"
+          },
+          "groupName": {
+            "bsonType": "string"
+          },
+          "senderEmail": {
+            "bsonType": "string"
+          }
+        }
+      }
+    }
+  }
+}
