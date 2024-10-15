@@ -35,3 +35,9 @@ model location {
   groups     Group[]
   locationId Int
 }
+
+model family {
+  id         Int       @id @default(autoincrement())
+  familyName String
+  locationId Int
+}
