@@ -37,12 +37,7 @@ model location {
 }
 
 model family {
-  id         Int       @id @default(autoincrement())
+  id         Int    @id @default(autoincrement())
   familyName String
   locationId Int
-}
-model familyMember {
-  id         Int       @id @default(autoincrement())
-  familyId   Int
-  userId     Int
 }
