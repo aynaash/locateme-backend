@@ -41,3 +41,8 @@ model family {
   familyName String
   locationId Int
 }
+model familyMember {
+  id         Int       @id @default(autoincrement())
+  familyId   Int
+  userId     Int
+}
