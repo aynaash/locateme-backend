@@ -1,7 +1,3 @@
-Here’s an improved and more engaging version of your README with the context of your project, along with some added flair to make it stand out. I’ve also included emojis and formatted it to align with open-source community standards:
-
----
-
 # 🌍📍 Locate Me Backend
 
 Welcome to the **Locate Me** backend! This project is designed to empower people with disabilities by helping them share their **location** and **needs** with trusted contacts such as volunteers, NGOs, family members, and good Samaritans. ❤️ 
