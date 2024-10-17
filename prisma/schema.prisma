@@ -16,11 +16,25 @@ model Group {
 }
 
 model location {
-  id     Int      @id @default(autoincrement())
-  name   String
-  users  user[] // A location can have multiple users
-  groups Group[] // A location can have multiple groups
+  id            Int          @id @default(autoincrement())
+  name          String
+  latitude      Float // Geographic latitude for Google Maps
+  longitude     Float // Geographic longitude for Google Maps
+  address       String // Full address of the location
+  placeId       String // Google Place ID for identifying a specific place
+  googleMapsUrl String // URL to open the location in Google Maps
+  description   String? // Optional description of the location
+  locationType  LocationType // Enum to categorize the location
+
+  users  user[] // Relation to the user model
+  groups Group[] // Relation to the group model
   family family[]
+}
+
+enum LocationType {
+  INDANGER
+  STUCK
+  HEALTHDANGERZONE
 }
 
 model family {
