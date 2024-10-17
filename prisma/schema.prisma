@@ -1,43 +1,46 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-generator client {
-  provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
-}
-
 model user {
-  id       Int        @id @default(autoincrement())
-  name     String
-  email    String     @unique
-  password String
-  location location[]
+  id            Int             @id @default(autoincrement())
+  name          String
+  email         String          @unique
+  password      String
+  location      location[] // A user can be associated with one or more locations
+  familyMembers familyMembers[] // A user can be a family member of multiple families (through familyMembers)
 }
 
 model Group {
-  id         Int       @unique @default(autoincrement())
-  groupName  String
-  locationId Int
-  location   location? @relation(fields: [locationId], references: [id])
+  id            Int             @id @default(autoincrement())
+  groupName     String
+  locationId    Int
+  location      location?       @relation(fields: [locationId], references: [id]) // A group is associated with one location
+  familyMembers familyMembers[] // A group can have multiple family members
 }
 
 model location {
-  id         Int     @id @default(autoincrement())
-  name       String
-  users      user[]
-  groups     Group[]
-  locationId Int
+  id     Int      @id @default(autoincrement())
+  name   String
+  users  user[] // A location can have multiple users
+  groups Group[] // A location can have multiple groups
+  family family[]
 }
 
 model family {
-  id         Int    @id @default(autoincrement())
-  familyName String
-  locationId Int
+  id            Int             @id @default(autoincrement())
+  familyName    String
+  locationId    Int
+  location      location?       @relation(fields: [locationId], references: [id]) // A family is associated with one location
+  familyMembers familyMembers[] // A family can have multiple family members
+}
+
+model familyMembers {
+  id       Int  @id @default(autoincrement())
+  userId   Int
+  familyId Int
+  groupId  Int?
+
+  // Relations
+  user   user   @relation(fields: [userId], references: [id]) // Links to a user
+  family family @relation(fields: [familyId], references: [id]) // Links to a family
+  group  Group? @relation(fields: [groupId], references: [id]) // A family member can belong to one or more groups (optional)
+
+  @@unique([userId, familyId]) // Ensures that a user can only be linked to the same family once
 }
