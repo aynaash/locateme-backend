@@ -3,16 +3,22 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "server": "nodemon index.js",
+     "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Welcome to the **Locate Me** backend! This project is designed to empower people with disabilities by helping them share their **location** and **needs** with trusted contacts such as volunteers, NGOs, family members, and good Samaritans. ❤️",
   "dependencies": {
     "@prisma/client": "^5.20.0",
+    "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "mysql2": "^3.11.3",
     "prisma": "^5.20.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
